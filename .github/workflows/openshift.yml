@@ -139,13 +139,13 @@ jobs:
         insecure_skip_tls_verify: true
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
 
-    - name: my deployment
+    - name: my deployment 
       run: |
         export IMAGE=${{ steps.push-image.outputs.registry-path }}
         echo ${{ steps.push-image.outputs.registry-path }}
-        sed -i 's|\${IMAGE}\'"$IMAGE"'|g' pod.yml
-        oc apply -f pod.yml
-        oc get pods
+        sed -i 's|\${IMAGE}|'"$IMAGE"'|g' pod.yaml
+        oc apply -f pod.yaml
+        oc get pods 
 
     # This step should create a deployment, service, and route to run your app and expose it to the internet.
     # https://github.com/redhat-actions/oc-new-app#readme
