@@ -4,7 +4,7 @@ metadata:
   name: ${APP_NAME}
   namespace: ${OPENSHIFT_NAMESPACE}
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: ${APP_NAME}
