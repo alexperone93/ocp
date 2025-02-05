@@ -1,22 +1,13 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Pod
 metadata:
-  name: ${APP_NAME}
+  name: nginx-pod
   namespace: ${OPENSHIFT_NAMESPACE}
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: ${APP_NAME}
-  template:
-    metadata:
-      labels:
-        app: ${APP_NAME}
-    spec:
-      imagePullSecrets:
-        - name: ghcr-pull-secret
-      containers:
-      - name: ${APP_NAME}
-        image: ${IMAGE}
-        ports:
+  imagePullSecrets:
+    - name: ghcr-pull-secret
+  containers:
+    - name: nginx
+      image: ${IMAGE}
+      ports:
         - containerPort: 8080
